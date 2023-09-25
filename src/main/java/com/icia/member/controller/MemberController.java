@@ -19,18 +19,18 @@ public class MemberController {
 
     @GetMapping("/save")
     public String save() {
-        return "memberSave";
+        return "memberPages/memberSave";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute MemberDTO memberDTO) {
         memberService.save(memberDTO);
-        return "memberLogin";
+        return "memberPages/memberLogin";
     }
 
     @GetMapping("/login")
     public String login() {
-        return "memberLogin";
+        return "memberPages/memberLogin";
     }
 
     @PostMapping("/login")
@@ -38,9 +38,9 @@ public class MemberController {
         boolean loginResult = memberService.login(memberDTO);
         if (loginResult) {
             session.setAttribute("loginEmail", memberDTO.getMemberEmail());
-            return "memberMain";
+            return "memberPages/memberMain";
         } else {
-            return "memberLogin";
+            return "memberPages/memberLogin";
         }
     }
 }
