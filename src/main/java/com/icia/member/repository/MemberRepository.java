@@ -1,4 +1,7 @@
 package com.icia.member.repository;
 
-public interface MemberRepository {
+import com.icia.member.entity.MemberEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 }

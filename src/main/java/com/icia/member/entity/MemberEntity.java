@@ -1,8 +1,15 @@
 package com.icia.member.entity;
 
+import com.icia.member.dto.MemberDTO;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter(AccessLevel.PRIVATE)
 @Table(name = "member_table")
 public class MemberEntity {
     @Id
@@ -23,4 +30,29 @@ public class MemberEntity {
 
     @Column
     private String memberMobile;
+
+    public static MemberEntity toSaveEntity(MemberDTO memberDTO) {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
+        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
+        memberEntity.setMemberName(memberDTO.getMemberName());
+        memberEntity.setMemberBirth(memberDTO.getMemberBirth());
+        memberEntity.setMemberMobile(memberDTO.getMemberMobile());
+        return memberEntity;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
