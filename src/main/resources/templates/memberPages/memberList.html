@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{component/config :: config}"></th:block>
+</head>
+<body>
+<div th:replace="~{component/header :: header}"></div>
+<div th:replace="~{component/nav :: nav}"></div>
+
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>id</th>
+            <th>email</th>
+            <th>name</th>
+            <th>birth</th>
+            <th>mobile</th>
+        </tr>
+        <tr th:each="member: ${memberList}">
+            <td th:text="${member.id}"></td>
+            <td>
+                <a th:href="@{|/member/${member.id}|}" th:text="${member.memberEmail}"></a>
+            </td>
+            <td th:text="${member.memberName}"></td>
+            <td th:text="${member.memberBirth}"></td>
+            <td th:text="${member.memberMobile}"></td>
+            <td>
+                <button th:onclick="member_detail([[${member.id}]])">조회</button>
+            </td>
+            <td>
+                <button th:onclick="member_delete([[${member.id}]])">삭제</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div th:replace="~{component/footer :: footer}"></div>
+
+</body>
+<script th:inline="javascript">
+    const member_detail = (id) => {
+        location.href = `/member/${id}`;
+    }
+    const member_delete = (id) => {
+        location.href = `/member/delete/${id}`;
+    }
+</script>
+</html>

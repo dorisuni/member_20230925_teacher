@@ -6,6 +6,8 @@ import com.icia.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -42,8 +44,18 @@ public class MemberService {
         } else {
             return false;
         }
+    }
 
-
+    public List<MemberDTO> findAll() {
+        List<MemberEntity> memberEntityList = memberRepository.findAll();
+        List<MemberDTO> memberDTOList = new ArrayList<>();
+        for (MemberEntity memberEntity: memberEntityList) {
+//            MemberDTO memberDTO = MemberDTO.toDTO(memberEntity);
+//            memberDTOList.add(memberDTO);
+            // 한줄로
+            memberDTOList.add(MemberDTO.toDTO(memberEntity));
+        }
+        return memberDTOList;
     }
 }
 
