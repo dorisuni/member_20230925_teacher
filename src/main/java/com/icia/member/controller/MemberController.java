@@ -103,6 +103,13 @@ public class MemberController {
         session.removeAttribute("loginEmail");
         return "memberPages/memberLogin";
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable("id") Long id, @RequestBody MemberDTO memberDTO, HttpSession session) {
+        memberService.update(memberDTO);
+        session.removeAttribute("loginEmail");
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
 
 
